@@ -1,0 +1,11 @@
+<ul class="sidebar-nav list-group">
+  <li class="list-group-item"><a href="{% url "trello:tasks-list" %}">All tasks</a></li>
+  <li class="list-group-item"><a href="{% url "trello:tasks-list" %}?my_tasks=True">My tasks</a></li>
+  <li class="list-group-item"><a href="{% url "trello:tasks-list" %}?in_progress=True">In progress</a></li>
+  <li class="list-group-item"><a href="{% url "trello:tasks-list" %}?is_completed=True">Is completed</a></li>
+  <li class="list-group-item"><a href="{% url "trello:tasks-list" %}?sort_asc_deadline=True">Sort ASC deadline</a>
+  </li>
+   <li class="list-group-item"><a href="{% url "trello:tasks-list" %}?sort_desc_deadline=True">Sort DESC deadline</a>
+  </li>
+
+</ul>

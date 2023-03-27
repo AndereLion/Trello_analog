@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="task_detail_wrapper">
+    <div class="task_detail_wrapper_inner">
+      <div class="task_detail_wrapper_inner_box">
+        <h2>Task detail</h2>
+        <p>Name: {{ task.name }}</p>
+        <p class="wrapper_box_priority_p">
+          Priority:
+          {% if task.priority == "L" %}
+            <h6 class="wrapper_box_priority_low">{{ task.get_priority_display }}</h6>
+          {% elif task.priority == "M" %}
+            <h6 class="wrapper_box_priority_medium">{{ task.get_priority_display }}</h6>
+          {% elif task.priority == "H" %}
+            <h6 class="wrapper_box_priority_height">{{ task.get_priority_display }}</h6>
+          {% endif %}
+        </p>
+        <p>Deadline: {{ task.deadline }}</p>
+        <p>Task type: {{ task.task_type }}</p>
+        <p>Tags:
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}
+        </p>
+        <p>Status: {{ task.is_completed|yesno:"Is completed,In progress" }}
+          {% if task.is_completed %}
+            <img class="wrapper_box_status_img"
+                 src="../../static/img/red_round.png"
+                 alt="">
+          {% else %}
+            <img class="wrapper_box_status_img" src="../../static/img/green_round.png" alt="">
+          {% endif %}
+        </p>
+        <p>Project: {% for project in task.projects.all %}{{ project.name }}:{% endfor %}</p>
+        <p>Description: {{ task.description }}</p>
+        <p>Assignees:
+          {% for assign in task.assignees.all %}
+
+            {% if assign.id == user.id %}<span class="me_assign">Me:</span>{% endif %} {{ assign.first_name }}
+            {{ assign.last_name }}(
+            {{ assign.username }}) :
+          {% endfor %}
+        </p>
+        {% if task in user.tasks.all %}
+          <a href="{% url "trello:toggle-task-assign" pk=task.id %}" class="btn btn-danger link-to-page">
+            Delete me from this task
+          </a>
+        {% else %}
+          <a href="{% url "trello:toggle-task-assign" pk=task.id %}" class="btn btn-success link-to-page">
+            Assign me to this task
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
