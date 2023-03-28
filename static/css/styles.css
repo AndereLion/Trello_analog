@@ -35,7 +35,9 @@ header {
     background-size: cover;
     background: #2d2d3a url("../img/main_background.jpg") no-repeat;
 }
-
+.list-group-item-selected{
+    background: #2d2d3a url("../img/dark_grey2.jpg") no-repeat;
+}
 .tasks_wrapper {
     width: 100%;
     display: flex;
