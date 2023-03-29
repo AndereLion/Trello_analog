@@ -18,6 +18,7 @@ class WorkerAdmin(UserAdmin):
                         "first_name",
                         "last_name",
                         "position",
+                        "email"
                     )
                 },
             ),
