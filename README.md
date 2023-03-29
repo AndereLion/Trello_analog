@@ -4,8 +4,11 @@
 A django task management project
 ## Check it out!
 link
-[Trello project deployed ](PASTE_LINK_HERE)
+[Trello project deployed ](https://trello-5wky.onrender.com)
 
+## Credential for testing:
+username =  RomanS
+password = 12121212@A
 ## Installing / Getting started
 
 Python3 must be already installed
