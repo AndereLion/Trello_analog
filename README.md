@@ -26,5 +26,4 @@ python manage.py runserver
 
 ### Demo
 
-![Website Interface](All tasks.jpg)
 ![Website interface](demo.jpg)
