@@ -44,7 +44,7 @@ def index(request):
         "num_task_types": num_task_types,
         "num_projects": num_projects,
         "num_teams": num_teams,
-        "num_tags":num_tags,
+        "num_tags": num_tags,
         "num_visits": num_visits + 1,
 
     }
@@ -123,10 +123,29 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 @login_required
+def about(request):
+    return render(request, "trello/about.html")
+
+
+@login_required
 def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
     if Task.objects.get(id=pk) in worker.tasks.all():
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)
-    return HttpResponseRedirect(reverse_lazy("trello:task-detail", args=[pk]))
+    return HttpResponseRedirect(
+        reverse_lazy("trello:task-detail",
+                     args=[pk])
+    )
+
+
+@login_required
+def toggle_change_task_status(request, pk):
+    task = Task.objects.get(id=pk)
+    task.is_completed = not task.is_completed
+    task.save()
+    return HttpResponseRedirect(
+        reverse_lazy("trello:task-detail"
+                     , args=[pk])
+    )

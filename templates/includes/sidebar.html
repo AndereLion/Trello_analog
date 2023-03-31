@@ -1,17 +1,49 @@
 <ul class="sidebar-nav list-group">
   <li class="list-group-item {% if not request.GET and  request.path == "/tasks/" %}list-group-item-selected{% endif %}">
     <a href="{% url "trello:tasks-list" %}">All tasks</a></li>
-  <li class="list-group-item {% if request.GET.my_tasks %}list-group-item-selected{% endif %}"><a
-      href="{% url "trello:tasks-list" %}?my_tasks=True">My tasks</a></li>
-  <li class="list-group-item {% if request.GET.in_progress %}list-group-item-selected{% endif %}"><a
-      href="{% url "trello:tasks-list" %}?in_progress=True">In progress</a></li>
-  <li class="list-group-item {% if request.GET.is_completed %}list-group-item-selected{% endif %}"><a
-      href="{% url "trello:tasks-list" %}?is_completed=True">Is completed</a></li>
-  <li class="list-group-item {% if request.GET.sort_asc_deadline %}list-group-item-selected{% endif %}"><a
-      href="{% url "trello:tasks-list" %}?sort_asc_deadline=True">Sort ASC deadline</a>
+  <li class="list-group-item {% if request.GET.my_tasks %}list-group-item-selected{% endif %}">
+    <a
+        href="{% url "trello:tasks-list" %}?my_tasks=True">My tasks</a></li>
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?sort_asc_deadline=True">
+
+      Sort ASC
+      deadline
+      <div
+          class="switch-btn {% if request.GET.sort_asc_deadline %}switch-on{% endif %}"></div>
+    </a>
   </li>
-  <li class="list-group-item {% if request.GET.sort_desc_deadline %}list-group-item-selected{% endif %}"><a
-      href="{% url "trello:tasks-list" %}?sort_desc_deadline=True">Sort DESC deadline</a>
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?sort_desc_deadline=True">
+
+      DESC
+      deadline
+      <div
+          class="switch-btn {% if request.GET.sort_desc_deadline %}switch-on{% endif %}"></div>
+    </a>
+
   </li>
+
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?in_progress=True">
+
+      In progress
+      <div
+          class="switch-btn {% if request.GET.in_progress %}switch-on{% endif %}"></div>
+    </a>
+  </li>
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?is_completed=True">
+
+      Is completed
+      <div
+          class="switch-btn {% if request.GET.is_completed %}switch-on{% endif %}"></div>
+    </a>
+  </li>
+
 
 </ul>

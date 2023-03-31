@@ -10,10 +10,7 @@ class AdminSiteTests(TestCase):
         self.client = Client()
         position = Position(name="PM")
         position.save()
-        self.admin_superuser = get_user_model(
-
-        ).objects.create_superuser(
-
+        self.admin_superuser = get_user_model().objects.create_superuser(
             username="AdminUser",
             password="12121212@A",
             first_name="Admin",
@@ -22,10 +19,7 @@ class AdminSiteTests(TestCase):
             position=position,
         )
         self.client.force_login(self.admin_superuser)
-        self.ordinary_user = get_user_model(
-
-        ).objects.create_superuser(
-
+        self.ordinary_user = get_user_model().objects.create_superuser(
             username="OrdinaryUser",
             password="12121212@A",
             first_name="Ordinary",
@@ -37,9 +31,7 @@ class AdminSiteTests(TestCase):
     def test_worker_position_listed(self):
         url = reverse("admin:trello_worker_changelist")
         response = self.client.get(url)
-        self.assertContains(
-            response, self.ordinary_user.position
-        )
+        self.assertContains(response, self.ordinary_user.position)
 
     def test_worker_detail_position_listed(self):
         url = reverse(
@@ -47,6 +39,4 @@ class AdminSiteTests(TestCase):
             args=[self.ordinary_user.id]
         )
         response = self.client.get(url)
-        self.assertContains(
-            response, self.ordinary_user.position
-        )
+        self.assertContains(response, self.ordinary_user.position)

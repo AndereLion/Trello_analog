@@ -6,20 +6,23 @@ from django.urls import reverse
 class Position(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
 class Worker(AbstractUser):
     position = models.ForeignKey(
-        Position, on_delete=models.CASCADE, null=True, related_name="workers"
+        Position,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="workers"
     )
 
     class Meta:
         verbose_name = "worker"
         verbose_name_plural = "workers"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
@@ -29,14 +32,14 @@ class Worker(AbstractUser):
 class TaskType(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -44,7 +47,7 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -54,7 +57,7 @@ class Team(models.Model):
     members = models.ManyToManyField(Worker, related_name="teams")
     projects = models.ManyToManyField(Project, related_name="teams")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -92,5 +95,5 @@ class Task(models.Model):
         related_name="tasks"
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name

@@ -35,9 +35,11 @@ header {
     background-size: cover;
     background: #2d2d3a url("../img/main_background.jpg") no-repeat;
 }
-.list-group-item-selected{
+
+.list-group-item-selected {
     background: #2d2d3a url("../img/dark_grey2.jpg") no-repeat;
 }
+
 .tasks_wrapper {
     width: 100%;
     display: flex;
@@ -196,6 +198,58 @@ footer {
 .worker_detail_update_p {
     text-align: center;
 }
-.me_assign{
-    color: greenyellow;
+
+.me_assign {
+    color: #02ff46;
+}
+
+.switch-btn {
+    width: 45px;
+    height: 19px;
+    border-radius: 9px;
+    background: #bfbfbf;
+    z-index: 0;
+    margin-top: 2px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition-duration: 300ms;
+}
+
+.switch-btn::after {
+    content: "";
+    height: 17px;
+    width: 17px;
+    border-radius: 17px;
+    background: #fff;
+    top: 1px;
+    left: 2px;
+    transition-duration: 600ms;
+    position: absolute;
+    z-index: 1;
+}
+
+.switch-on {
+    background: #57ad35;
+}
+
+.switch-on::after {
+    left: 24px;
+}
+
+.switch_btn_li {
+    list-style-type: none;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch_btn_li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

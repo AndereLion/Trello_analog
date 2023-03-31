@@ -10,13 +10,25 @@ from trello.views import (
     WorkerCreateView,
     WorkerDetailView,
     WorkerUpdateView,
+    about,
     toggle_assign_to_task,
+    toggle_change_task_status
 )
 
 app_name = "trello"
 
 urlpatterns = [
     path("", index, name="index"),
+    path(
+        "about/",
+        about,
+        name="about"
+    ),
+    path(
+        "tasks_status/<int:pk>/",
+        toggle_change_task_status,
+        name="tasks-change-status"
+    ),
     path(
         "tasks/",
         TaskListView.as_view(),

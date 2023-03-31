@@ -25,29 +25,37 @@
         </p>
         <p>Status: {{ task.is_completed|yesno:"Is completed,In progress" }}
           {% if task.is_completed %}
-            <img class="wrapper_box_status_img"
-                 src="../../static/img/red_round.png"
-                 alt="">
+
+            <a href="{% url "trello:tasks-change-status" pk=task.pk %}"><img
+                class="wrapper_box_status_img"
+                src="../../static/img/red_round.png"
+                alt=""></a>
           {% else %}
-            <img class="wrapper_box_status_img" src="../../static/img/green_round.png" alt="">
+            <a href="{% url "trello:tasks-change-status" pk=task.pk %}"><img
+                class="wrapper_box_status_img"
+                src="../../static/img/green_round.png" alt=""></a>
           {% endif %}
         </p>
-        <p>Project: {% for project in task.projects.all %}{{ project.name }}:{% endfor %}</p>
+        <p>Project: {% for project in task.projects.all %}{{ project.name }}
+          :{% endfor %}</p>
         <p>Description: {{ task.description }}</p>
         <p>Assignees:
           {% for assign in task.assignees.all %}
 
-            {% if assign.id == user.id %}<span class="me_assign">Me:</span>{% endif %} {{ assign.first_name }}
+            <span class="{% if assign.id == user.id %}me_assign"{% endif %}>
+             {{ assign.first_name }}
             {{ assign.last_name }}(
-            {{ assign.username }}) :
+            {{ assign.username }}) :</span>
           {% endfor %}
         </p>
         {% if task in user.tasks.all %}
-          <a href="{% url "trello:toggle-task-assign" pk=task.id %}" class="btn btn-danger link-to-page">
+          <a href="{% url "trello:toggle-task-assign" pk=task.id %}"
+             class="btn btn-danger link-to-page">
             Delete me from this task
           </a>
         {% else %}
-          <a href="{% url "trello:toggle-task-assign" pk=task.id %}" class="btn btn-success link-to-page">
+          <a href="{% url "trello:toggle-task-assign" pk=task.id %}"
+             class="btn btn-success link-to-page">
             Assign me to this task
           </a>
         {% endif %}
