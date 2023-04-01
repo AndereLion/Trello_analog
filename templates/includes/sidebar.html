@@ -6,38 +6,36 @@
         href="{% url "trello:tasks-list" %}?my_tasks=True">My tasks</a></li>
   <li class="switch_btn_li">
     <a
-        href="{% url "trello:tasks-list" %}?sort_asc_deadline=True">
-
-      Sort ASC
-      deadline
+        href="{% url "trello:tasks-list" %}?sort_asc_deadline={% if request.GET.sort_asc_deadline == "True" %}False{% else %}True{% endif %}">
+      Sort ASC deadline
       <div
-          class="switch-btn {% if request.GET.sort_asc_deadline %}switch-on{% endif %}"></div>
+          class="switch-btn {% if request.GET.sort_asc_deadline == "True" %}switch-on{% endif %}"></div>
     </a>
   </li>
   <li class="switch_btn_li">
     <a
-        href="{% url "trello:tasks-list" %}?sort_desc_deadline=True">
+        href="{% url "trello:tasks-list" %}?sort_desc_deadline={% if request.GET.sort_desc_deadline == "True" %}False{% else %}True{% endif %}">
 
       DESC
       deadline
       <div
-          class="switch-btn {% if request.GET.sort_desc_deadline %}switch-on{% endif %}"></div>
+          class="switch-btn {% if request.GET.sort_desc_deadline == "True" %}switch-on{% endif %}"></div>
     </a>
 
   </li>
 
   <li class="switch_btn_li">
     <a
-        href="{% url "trello:tasks-list" %}?in_progress=True">
+        href="{% url "trello:tasks-list" %}?in_progress={% if request.GET.in_progress == "True" %}False{% else %}True{% endif %}">
 
       In progress
       <div
-          class="switch-btn {% if request.GET.in_progress %}switch-on{% endif %}"></div>
+          class="switch-btn {% if request.GET.in_progress == "True" %}switch-on{% endif %}"></div>
     </a>
   </li>
   <li class="switch_btn_li">
     <a
-        href="{% url "trello:tasks-list" %}?is_completed=True">
+        href="{% url "trello:tasks-list" %}?is_completed={% if request.GET.is_completed == "True" %}False{% else %}True{% endif %}">
 
       Is completed
       <div

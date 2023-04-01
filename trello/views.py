@@ -69,13 +69,13 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
             queryset = queryset.filter(
                 assignees__id=self.request.user.pk
             )
-        if self.request.GET.get("sort_asc_deadline"):
+        if self.request.GET.get("sort_asc_deadline") == "True":
             queryset = queryset.order_by("deadline")
-        if self.request.GET.get("sort_desc_deadline"):
+        if self.request.GET.get("sort_desc_deadline") == "True":
             queryset = queryset.order_by("-deadline")
-        if self.request.GET.get("in_progress"):
+        if self.request.GET.get("in_progress") == "True":
             queryset = queryset.filter(is_completed=False)
-        if self.request.GET.get("is_completed"):
+        if self.request.GET.get("is_completed") == "True":
             queryset = queryset.filter(is_completed=True)
 
         form = TaskSearchForm(self.request.GET)
