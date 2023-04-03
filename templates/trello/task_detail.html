@@ -27,12 +27,12 @@
           {% if task.is_completed %}
 
             <a href="{% url "trello:tasks-change-status" pk=task.pk %}"><img
-                class="wrapper_box_status_img"
+                class="status_button_img"
                 src="../../static/img/Completed.jpg"
                 alt=""></a>
           {% else %}
             <a href="{% url "trello:tasks-change-status" pk=task.pk %}"><img
-                class="wrapper_box_status_img"
+                class="status_button_img"
                 src="../../static/img/In%20progress.jpg" alt=""></a>
           {% endif %}
         </p>

@@ -126,6 +126,11 @@ footer {
     border-radius: 30px;
 }
 
+.status_button_img {
+    width: 60px;
+    border-radius: 30px;
+}
+
 .wrapper_box_priority_low {
     color: greenyellow;
     display: inline;
