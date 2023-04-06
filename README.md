@@ -24,7 +24,7 @@ python manage.py runserver
 ```
 ### Features
 
-`-Authentication functionality for WorkerUser (also created, update user-profile)`\
+`-Authentication functionality for WorkerUser (also create, update user-profile)`\
 `-Managing tasks (create,delete,update)`\
 `-Admin panel for managing `
 
