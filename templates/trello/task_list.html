@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  {% load static %}
+  <h2>
+    Tasks List
+    <a href="{% url "trello:task-create" %}" class="create_button btn btn-dark">
+      Create
+    </a>
+  </h2>
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input type="submit" value="🔍" class="btn btn-dark">
+  </form>
+  {% if task_list %}
+    <div class="tasks_wrapper">
+      {% for task in task_list %}
+
+        <div class="wrapper_box">
+
+          <a href="{% url "trello:task-detail" pk=task.id %}">
+            <div class="wrapper_box_sensory_place">
+              <h6>{{ task.name }} </h6>
+              <p class="wrapper_box_priority_p">
+                Priority:
+                {% if task.priority == "L" %}
+                  <h6 class="wrapper_box_priority_low">{{ task.get_priority_display }}</h6>
+                {% elif task.priority == "M" %}
+                  <h6 class="wrapper_box_priority_medium">{{ task.get_priority_display }}</h6>
+                {% elif task.priority == "H" %}
+                  <h6 class="wrapper_box_priority_height">{{ task.get_priority_display }}</h6>
+                {% endif %}
+              </p>
+              <p>Deadline: {{ task.deadline }}</p>
+              <p>Task type: {{ task.task_type }}</p>
+              <p>Status: {{ task.is_completed|yesno:"Is completed,In progress" }}
+                {% if task.is_completed %}
+                  <img class="wrapper_box_status_img"
+                       src="../../static/img/red_round.png"
+                       alt="">
+                {% else %}
+                  <img class="wrapper_box_status_img" src="../../static/img/green_round.png" alt="">
+                {% endif %}
+              </p>
+
+            </div>
+          </a>
+          <a href="{% url "trello:task-update" pk=task.id %}" class="update_button btn btn-warning">
+            Update
+          </a>
+          <a href="{% url "trello:task-delete" pk=task.id %}" class="delete_button btn btn-danger">
+            Delete
+          </a>
+        </div>
+
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>There are no tasks in the db.</p>
+  {% endif %}
+{% endblock %}

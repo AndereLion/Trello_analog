@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="task_detail_wrapper">
+    <div class="task_detail_wrapper_inner">
+      <div class="task_detail_wrapper_inner_box">
+        <h2>Worker detail</h2>
+        <p>Username: {{ user.username }}</p>
+      <p>Position: {{ worker.position.name }}</p>
+        <p>First name: {{ user.first_name }}</p>
+        <p>Last name: {{ user.last_name }}</p>
+        <p>Email: {% if user.email %}user.email{% else %}Not provided{% endif %}</p>
+        <p>
+          Is superuser:
+          {% if user.is_superuser %}
+            <img class="wrapper_box_status_img" src="../../static/img/green_round.png" alt="">
+          {% else %}
+            <img class="wrapper_box_status_img"
+                 src="../../static/img/red_round.png"
+                 alt="">
+          {% endif %}
+        </p>
+        <p>
+          Is staff:
+          {% if user.is_staff %}
+            <img class="wrapper_box_status_img" src="../../static/img/green_round.png" alt="">
+          {% else %}
+            <img class="wrapper_box_status_img"
+                 src="../../static/img/red_round.png"
+                 alt="">
+          {% endif %}
+        </p>
+
+        <p class="worker_detail_update_p"><a href="{% url "trello:worker-update" pk=user.id %}"
+                                             class="update_button btn btn-warning">
+          Update
+        </a></p>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

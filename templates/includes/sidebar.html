@@ -1,0 +1,47 @@
+<ul class="sidebar-nav list-group">
+  <li class="list-group-item {% if not request.GET and  request.path == "/tasks/" %}list-group-item-selected{% endif %}">
+    <a href="{% url "trello:tasks-list" %}">All tasks</a></li>
+  <li class="list-group-item {% if request.GET.my_tasks %}list-group-item-selected{% endif %}">
+    <a
+        href="{% url "trello:tasks-list" %}?my_tasks=True">My tasks</a></li>
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?sort_asc_deadline={% if request.GET.sort_asc_deadline == "True" %}False{% else %}True{% endif %}">
+      Sort ASC deadline
+      <div
+          class="switch-btn {% if request.GET.sort_asc_deadline == "True" %}switch-on{% endif %}"></div>
+    </a>
+  </li>
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?sort_desc_deadline={% if request.GET.sort_desc_deadline == "True" %}False{% else %}True{% endif %}">
+
+      DESC
+      deadline
+      <div
+          class="switch-btn {% if request.GET.sort_desc_deadline == "True" %}switch-on{% endif %}"></div>
+    </a>
+
+  </li>
+
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?in_progress={% if request.GET.in_progress == "True" %}False{% else %}True{% endif %}">
+
+      In progress
+      <div
+          class="switch-btn {% if request.GET.in_progress == "True" %}switch-on{% endif %}"></div>
+    </a>
+  </li>
+  <li class="switch_btn_li">
+    <a
+        href="{% url "trello:tasks-list" %}?is_completed={% if request.GET.is_completed == "True" %}False{% else %}True{% endif %}">
+
+      Is completed
+      <div
+          class="switch-btn {% if request.GET.is_completed == "True" %}switch-on{% endif %}"></div>
+    </a>
+  </li>
+
+
+</ul>
